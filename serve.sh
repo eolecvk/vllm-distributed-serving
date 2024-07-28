@@ -31,6 +31,14 @@ echo "Configuring NVIDIA runtime and restarting Docker..."
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 
+# Check if huggingface-cli is installed and install it if not
+if ! command -v huggingface-cli &> /dev/null; then
+  echo "huggingface-cli not found, installing..."
+  pip install huggingface_hub
+else
+  echo "huggingface-cli is already installed."
+fi
+
 # Set Hugging Face token
 echo "Setting Hugging Face token..."
 export HF_TOKEN=${HF_TOKEN}

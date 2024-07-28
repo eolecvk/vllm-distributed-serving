@@ -5,7 +5,7 @@
 
 2. DL the setup script
 ```
-curl -o setup.sh https://raw.githubusercontent.com/eolecvk/vllm-distributed-serving/main/setup.sh
+curl -o setup.sh https://raw.githubusercontent.com/eolecvk/vllm-distributed-serving/main/serve.sh
 ```
 
 3. Run the setup script
@@ -14,6 +14,10 @@ bash setup.sh \
     --HF_TOKEN <your_hugging_face_token> \
     --model <the_model_name>
 ```
+chmod +x setup.sh
+/bin/bash ./setup.sh \
+    --HF_TOKEN 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 \
+    --model meta-llama/Meta-Llama-3.1-70B-Instruct
 
 4. Test endpoint
 
