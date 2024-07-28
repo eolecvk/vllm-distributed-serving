@@ -39,9 +39,9 @@ export HF_TOKEN=${HF_TOKEN}
 echo "Logging into Hugging Face..."
 huggingface-cli login --token ${HF_TOKEN}
 
-# Run the Docker container with the specified parameters
-echo "Running Docker container..."
-docker run \
+# Run the Docker container with the specified parameters in the background
+echo "Running Docker container in the background..."
+nohup docker run \
      --runtime nvidia \
      --gpus all \
      -v ~/.cache/huggingface:/root/.cache/huggingface \
@@ -51,6 +51,7 @@ docker run \
      --model ${MODEL} \
      --swap-space 16 \
      --disable-log-requests \
-     --tensor-parallel-size 8
+     --tensor-parallel-size 8 > docker.log 2>&1 &
 
 echo "Setup complete."
+echo "Docker logs can be found in docker.log"

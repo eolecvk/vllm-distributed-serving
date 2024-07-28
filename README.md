@@ -1,6 +1,6 @@
 # One-click setup llama 3.1 endpoint
 
-1. SSH into instance
+1. Start instance and SSH into instance
 
 
 2. DL the setup script
