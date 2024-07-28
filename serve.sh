@@ -32,6 +32,18 @@ if [ -z "$MODEL" ]; then
   exit 1
 fi
 
+# Add user to the Docker group to avoid permission issues
+echo "Adding user to the Docker group..."
+sudo usermod -aG docker $USER
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to add user to the Docker group."
+  exit 1
+fi
+
+# Refresh the group membership
+echo "Refreshing group membership..."
+newgrp docker
+
 # Configure NVIDIA runtime and restart Docker
 echo "Configuring NVIDIA runtime and restarting Docker..."
 sudo nvidia-ctk runtime configure --runtime=docker
